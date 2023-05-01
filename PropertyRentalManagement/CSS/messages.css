@@ -1,0 +1,42 @@
+﻿body {
+    background-color: #212529;
+    font-family: Candara;
+}
+ul.navigation {
+    margin: 0px;
+    padding: 0px;
+}
+
+    ul.navigation li {
+        display: inline;
+        margin-right: 15px;
+    }
+
+.lst {
+    background-color: lightgrey;
+    padding: 20px;
+    border-radius: 30px;
+}
+
+
+.btn-respond {
+    border-radius: 100px;
+    height: 35px;
+    width: 100px;
+    transition-duration: 0.4s;
+    background-color: #4CAF50;
+    color:white;
+}
+
+    .btn-respond:hover {
+        background-color: white; /* Green */
+        color: black;
+        
+    }
+
+.txt-title{
+    align-items:center;
+    color:white;
+}
+
+

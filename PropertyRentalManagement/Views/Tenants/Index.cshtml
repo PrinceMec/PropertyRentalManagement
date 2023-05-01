@@ -1,0 +1,95 @@
+﻿@model IEnumerable<PropertyRentalManagement.Models.Tenant>
+
+@{
+    ViewBag.Title = "Index";
+}
+<html>
+
+<head>
+    <link href="~/CSS/List.css" rel="stylesheet" />
+    <link href="~/CSS/TenantDashboard.css" rel="stylesheet" />
+    <style>
+        a {
+            color: white !important;
+            text-decoration: none;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <center>
+        <h2 class="txt-title">List of Tenants</h2><br />
+    </center>
+
+    <br />
+
+    <center>
+        @Html.TextBox("city", null, new { id = "txtSearch", @class = "text-field", Placeholder = "Search Tenant" })
+        <input class="btnSearch" type="submit" value="Search" />
+    </center>
+    <br />
+
+
+    <style>
+        ul.navigation {
+            margin: 0px;
+            padding: 0px;
+        }
+
+            ul.navigation li {
+                display: inline;
+                margin-right: 15px;
+            }
+
+        #lst {
+            background-color: lightgrey;
+            padding: 20px;
+            border-radius: 30px;
+        }
+    </style>
+
+    @foreach (var item in Model)
+    {
+
+        <div id="lst">
+
+            @{ string fullName = item.FirstName + " " + item.LastName;}
+            <tr>
+                <td>
+                    <h5>@fullName</h5>
+
+                </td>
+                <td>
+                    <ul class="navigation">
+                        <li><font face="verdana" size=“10”><b>Email: </b>$@Html.DisplayFor(modelItem => item.Email)</font></li>
+                        <li><font face="verdana" size=“10”><b>Username: </b>@Html.DisplayFor(modelItem => item.Username) </font></li>
+
+                    </ul>
+
+                </td>
+
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.TenantId, @class = ".anchor" })  |
+                    @Html.ActionLink("Details", "Details", new { id = item.TenantId, @class = ".anchor" })
+
+                </td>
+
+
+
+            </tr>
+        </div>
+        <br />
+
+    }
+
+
+
+
+    </table>
+
+
+</body>
+</html>

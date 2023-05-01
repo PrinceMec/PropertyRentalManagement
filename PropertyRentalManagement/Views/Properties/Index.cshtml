@@ -1,0 +1,102 @@
+﻿@model IEnumerable<PropertyRentalManagement.Models.Property>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<html>
+
+<head>
+    <link href="~/CSS/List.css" rel="stylesheet" />
+    <link href="~/CSS/TenantDashboard.css" rel="stylesheet" />
+    <style>
+        a {
+            color: white !important;
+            text-decoration: none;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <center>
+        <h2 class="txt-title">Properties</h2>
+    </center>
+
+
+
+    @if (Session["ManagerId"] != null || Session["AdminId"] != null)
+    {
+        <p>
+            @Html.ActionLink("Click here to Post a Property", "Create", new { @class = ".anchor" })
+        </p>
+    }
+
+
+    <br />
+
+    <center>
+        @Html.TextBox("city", null, new { id = "txtSearch", @class = "text-field", Placeholder = "Search City" })
+        <input class="btnSearch" type="submit" value="Search" />
+    </center>
+    <br />
+
+    <br />
+
+    @foreach (var item in Model)
+    {
+
+        <div id="lst">
+
+
+            <tr>
+                <td>
+                    <h5>@Html.DisplayFor(modelItem => item.PropertyName)</h5>
+
+                </td>
+                <td>
+                    <ul class="navigation">
+                        <li><font face="verdana" size=“10”><b>Rent: </b>$@Html.DisplayFor(modelItem => item.Rent)/Month</font></li>
+                        <li><font face="verdana" size=“10”><b>Type: </b>@Html.DisplayFor(modelItem => item.Type) </font></li>
+                        <li><font face="verdana" size=“10”><b>Bed: </b>@Html.DisplayFor(modelItem => item.Bedroom) </font></li>
+                        <li><font face="verdana" size=“10”><b>Bathroom: </b>@Html.DisplayFor(modelItem => item.Bathroom) </font></li>
+
+                        <li><font face="verdana" size=“10”><b>Lease: </b>@Html.DisplayFor(modelItem => item.Lease) Months</font></li>
+                        <li><font face="verdana" size=“10”><b>City: </b>@Html.DisplayFor(modelItem => item.City)</font></li>
+
+                        @if (Session["TenantId"] != null)
+                        {
+                            <li><input type="button" value="Request Appointment" onclick="location.href='@Url.Action("Create", "Requests")'" /></li>
+                            <li><input type="button" value="Send Message" onclick="location.href='@Url.Action("Create", "ManagerMessages")'" /></li>
+
+                        }
+
+                    </ul>
+
+                </td>
+
+                @if (Session["TenantId"] == null)
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.PropertyId, @class = ".anchor" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.PropertyId, @class = ".anchor" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.PropertyId, @class = ".anchor" })
+                    </td>
+                }
+
+
+            </tr>
+        </div><br />
+
+    }
+
+</body>
+</html>
+
+
+
+
+
+
+

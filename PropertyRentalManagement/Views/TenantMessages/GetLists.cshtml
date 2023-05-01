@@ -1,0 +1,65 @@
+﻿@model IEnumerable<PropertyRentalManagement.Models.TenantMessage>
+
+@{
+    ViewBag.Title = "GetLists";
+}
+
+<html>
+<link href="~/CSS/messages.css" rel="stylesheet" />
+
+
+<body>
+    <br />
+    <center>
+        <h2 class="txt-title">Messages from Managers</h2>
+    </center>
+    <br />
+    <style>
+        a {
+            color: white !important;
+            text-decoration: none;
+            font-size: 20px;
+            padding-left:10px;
+        }
+    </style>
+
+
+    @foreach (var item in Model)
+    {
+
+        <div class="lst">
+
+            @{ string fullName = item.Manager.FirstName + " " + item.Manager.LastName;}
+            <tr>
+                <td>
+                    <h5>@fullName</h5>
+
+                </td>
+                <td>
+                    <ul class="navigation">
+                        <li><font face="verdana" size=“10”><b>Message:  </b>@Html.DisplayFor(modelItem => item.Message)</font></li>
+
+
+                    </ul>
+
+                </td>
+
+
+                <td>
+                    <input class="btn-respond" type="button" value="Respond" onclick="location.href='@Url.Action("Create", "ManagerMessages")'" />
+                    
+                    <div class="anchor">
+                        @Html.ActionLink("Delete Message", "Delete", new { @class = "anchor" })
+                    </div>
+                </td>
+                
+
+
+            </tr>
+        </div>
+        <br />
+
+    }
+
+</body>
+</html>

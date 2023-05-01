@@ -1,0 +1,76 @@
+﻿@model IEnumerable<PropertyRentalManagement.Models.Request>
+
+@{
+    ViewBag.Title = "GetRequests";
+}
+
+
+<html>
+<head>
+    <link href="~/CSS/messages.css" rel="stylesheet" />
+</head>
+<body>
+
+    <center>
+        <h2 class="txt-title">Appointment Requests from Tenants</h2><br /><br />
+    </center>
+    
+
+
+
+    <style>
+        ul.navigation {
+            margin: 0px;
+            padding: 0px;
+        }
+
+            ul.navigation li {
+                display: inline;
+                margin-right: 15px;
+            }
+
+        #lst {
+            background-color: lightgrey;
+            padding: 20px;
+            border-radius: 30px;
+        }
+    </style>
+
+    @foreach (var item in Model)
+    {
+
+        <div id="lst">
+
+            @{ string fullName = item.Tenant.FirstName + " " + item.Tenant.LastName;}
+            <tr>
+
+                <td>
+                    <ul class="navigation">
+                        <li><font face="verdana" size=“7”>Request from <b>@fullName</b></font></li>
+
+
+                    </ul>
+                    <input class="btn-respond" type="button" value="Schedule" onclick="location.href='@Url.Action("Create", "Appointments")'" />
+                </td>
+
+
+               
+                <div class="anchor">
+                    @Html.ActionLink("Delete Request", "Delete", new { id=item.RequestId, @class = "anchor" })
+                </div>
+
+
+
+            </tr>
+        </div>
+        <br />
+
+    }
+
+
+
+
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+﻿@model IEnumerable<PropertyRentalManagement.Models.Property>
+
+@{
+    ViewBag.Title = "IndexWithSearch";
+}
+
+<h2>IndexWithSearch</h2>
+
+
+<h1>Welcome @Session["TenantUsername"].ToString()</h1>
+
+@using (Html.BeginForm("DashboardForTenant", "Properties", FormMethod.Get))
+{
+    @Html.TextBox("city")
+    <input type="submit" value="Search" />
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PropertyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bedroom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bathroom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Utilities)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lease)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Manager.FirstName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PropertyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bedroom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bathroom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Utilities)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lease)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Manager.FirstName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PropertyId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PropertyId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PropertyId })
+            </td>
+        </tr>
+    }
+
+</table>

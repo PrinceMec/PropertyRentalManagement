@@ -1,0 +1,25 @@
+﻿body {
+    background-color: #212529;
+    font-family: Candara;
+}
+
+ul.navigation {
+    margin: 0px;
+    padding: 5px;
+}
+
+    ul.navigation li {
+        display: inline;
+        margin-right: 15px;
+    }
+
+#lst {
+    background-color: lightgrey;
+    padding: 20px;
+    border-radius: 30px;
+}
+
+.txt-title{
+    color:white;
+    font-size:60px;
+}

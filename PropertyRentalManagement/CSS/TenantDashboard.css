@@ -1,0 +1,69 @@
+﻿body {
+    background-color: #212529;
+    font-family:Candara;
+}
+ul.navigation {
+    margin: 0px;
+    padding: 5px;
+}
+
+    ul.navigation li {
+        display: inline;
+        margin-right: 15px;
+    }
+
+#lst {
+    background-color: lightgrey;
+    padding: 20px;
+    border-radius: 30px;
+}
+
+.btnSearch {
+    border-radius: 100px;
+    height: 45px;
+    width: 95px;
+    transition-duration: 0.4s;
+}
+
+    .btnSearch:hover {
+        background-color: #4CAF50; /* Green */
+        color: white;
+    }
+
+#txtSearch{
+    border-radius:100px;
+    height:45px;
+    width:1300px;
+    text-align:center;
+}
+
+.welcome-and-title {
+    color: white;
+    text-align:center;
+    padding:10px;
+}
+
+#search-and-refresh{
+    align-content:center;
+    padding-bottom:50px;
+}
+
+#notfoundtxt{
+    color:aliceblue;
+    text-align:center;
+    font-size:40px;
+}
+
+
+.btn-appointments-and-message {
+    border-radius: 100px;
+    height: 45px;
+    width: 180px;
+    transition-duration: 0.4s;
+}
+
+    .btn-appointments-and-message:hover {
+        background-color: #4CAF50; /* Green */
+        color: white;
+    }
+

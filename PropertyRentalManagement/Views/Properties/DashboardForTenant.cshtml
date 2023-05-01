@@ -1,0 +1,123 @@
+﻿@model IEnumerable<PropertyRentalManagement.Models.Property>
+
+@{
+    ViewBag.Title = "DashboardForTenant";
+
+
+}
+
+<html>
+
+<head>
+    <link href="~/CSS/TenantDashboard.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div id="first-section">
+
+        <h1 class="welcome-and-title">Property Rental Management</h1>
+
+        @if (Session["TenantUsername"] != null)
+        {
+            <h2 class="welcome-and-title">Welcome @Session["TenantUsername"].ToString()</h2>
+        }
+
+
+
+        @if (Session["ManagerUsername"] != null)
+        {
+            <h2 class="welcome-and-title">Welcome @Session["ManagerUsername"].ToString()</h2>
+        }
+
+
+
+        <center>
+            <div id="search-and-refresh">
+                @using (Html.BeginForm("DashboardForTenant", "Properties", FormMethod.Get))
+                {
+                    @Html.TextBox("city", null, new { id = "txtSearch", @class = "text-field", Placeholder = "Search City" })
+                    <input class="btnSearch" type="submit" value="Search" />
+                    <button class="btnSearch" type="submit" value="Refresh" onclick="location.href='@Url.Action("ShowAllProperties", "Properties")'">Refresh</button>
+
+                if (Session["ManagerUsername"] != null)
+                {
+                    <button class="btnSearch" type="submit" value="Add Property" onclick="location.href='@Url.Action("Create", "Properties")'">Add Property</button>
+                }
+                }
+            </div>
+
+        </center>
+
+
+    </div>
+
+   
+
+
+
+        @if (Model.Count() == 0)
+        {
+                <p id="notfoundtxt">Results not found</p>
+        }
+        else
+        {
+
+
+
+            foreach (var item in Model)
+            {
+
+        <div id="lst">
+
+
+            <tr>
+                <td>
+                    <h5>@Html.DisplayFor(modelItem => item.PropertyName)</h5>
+
+                </td>
+                <td>
+                    <ul class="navigation">
+                        <li><font face="verdana" size=“10”><b>Rent: </b>$@Html.DisplayFor(modelItem => item.Rent)/Month</font></li>
+                        <li><font face="verdana" size=“10”><b>Type: </b>@Html.DisplayFor(modelItem => item.Type) </font></li>
+                        <li><font face="verdana" size=“10”><b>Bed: </b>@Html.DisplayFor(modelItem => item.Bedroom) </font></li>
+                        <li><font face="verdana" size=“10”><b>Bathroom: </b>@Html.DisplayFor(modelItem => item.Bathroom) </font></li>
+
+                        <li><font face="verdana" size=“10”><b>Lease: </b>@Html.DisplayFor(modelItem => item.Lease) Months</font></li>
+                        <li><font face="verdana" size=“10”><b>City: </b>@Html.DisplayFor(modelItem => item.City)</font></li>
+
+                        @if (Session["TenantId"] != null)
+                        {
+                            <li><input class="btn-appointments-and-message" type="button" value="Request Appointment" onclick="location.href='@Url.Action("Create", "Requests")'" /></li>
+                            <li><input class="btn-appointments-and-message" type="button" value="Send Message" onclick="location.href='@Url.Action("Create", "ManagerMessages")'" /></li>
+
+                        }
+
+                    </ul>
+
+                </td>
+
+                @if (Session["TenantId"] == null)
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.PropertyId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.PropertyId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.PropertyId })
+                    </td>
+                }
+
+
+            </tr>
+        </div><br />
+
+
+
+
+            }
+
+        
+
+    }
+</body>
+
+</html>

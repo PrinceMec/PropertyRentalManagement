@@ -1,0 +1,75 @@
+﻿@model IEnumerable<PropertyRentalManagement.Models.Appointment>
+
+@{
+    ViewBag.Title = "GetAppointments";
+}
+
+<html>
+
+<head>
+    <link href="~/CSS/Appointment.css" rel="stylesheet" />
+</head>
+<body>
+
+    <style>
+        a {
+            color: white !important;
+            text-decoration: none;
+            font-size: 18px;
+        }
+    </style>
+
+    <br />
+    <center>
+        <h2 class="title-text">Your Appointments</h2>
+    </center>
+    <br />
+
+
+    @foreach (var item in Model)
+    {
+
+        <div id="lst">
+
+            @{ string fullName = item.Manager.FirstName + " " + item.Manager.LastName;}
+            <tr>
+
+                <td>
+                    <h4>Property : @item.Property.PropertyName.ToString()</h4>
+                </td>
+
+                <td>
+                    <ul class="navigation">
+                        <li><font face="verdana" size=“7”><b>Manager:</b> @fullName</font></li>
+                        <li><font face="verdana" size=“7”><b>Date:</b> @item.AppointmentDate.ToString("dd-MM-yyyy")</font></li>
+                        <li><font face="verdana" size=“7”><b>Time:</b> Between 9AM to 12AM</font></li>
+
+
+                    </ul>
+
+                </td>
+
+
+                <td>
+
+
+                    @Html.ActionLink("Details", "Details", new { id = item.AppointmentId, @class = ".anchor" })
+
+                </td>
+
+
+
+            </tr>
+        </div>
+        <br />
+
+    }
+
+
+
+
+    </table>
+
+</body>
+
+</html>

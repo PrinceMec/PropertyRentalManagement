@@ -1,0 +1,41 @@
+﻿body {
+    background-image: url('/Images/login2.jpg');
+}
+
+.anchor
+{
+    color: red !important;
+}
+
+
+.options {
+    border-radius: 15px;
+    height: 35px;
+    width: 85px;
+    transition-duration: 0.4s;
+}
+
+    .options:hover {
+        background-color: #4CAF50; /* Green */
+        color: white;
+    }
+
+.form-horizontal{
+    align-content:center;
+    align-items:center;
+    padding-top:100px;
+}
+
+.txtBox{
+    padding:10px;
+}
+
+.btnlogin{
+    border-radius:15px;
+    background-color:black;
+    width:280px;
+    color:white;
+    height:40px;
+}
+
+
